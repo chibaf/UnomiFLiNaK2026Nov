@@ -106,7 +106,7 @@ for (int i = 0; i < Th.nt; i++) {
 plot(Th,kappa,fill=1,wait=1);
 
 // Set property distributions
-kappa = (region == regShroud) ? kShroud : kFluid;
+//kappa = (region == regShroud) ? kShroud : kFluid;
 fQ = ( (x >= rpipe && x < d) && (y >= S && y <= S+H1) ) ? Qpower : 0.0;
 
 // 熱源・ポンプ関数の定義
