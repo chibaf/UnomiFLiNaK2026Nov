@@ -26,20 +26,22 @@ border D1(t=-pi,0){x=d+w1/2.0 + (w1/2.0)*cos(t); y=S + (w1/2.0)*sin(t); label=21
 border D2(t=S, S+H1) {x=d+w1; y=t; label=22;}  // シュラウド外壁
 border D3(t=0, pi) {x=d+w1/2.0 + (w1/2.0)*cos(t); y=S+H1 + (w1/2.0)*sin(t); label=23;}  // シュラウド上端
 border D4(t=S+H1, S) {x=d; y=t; label=24;}  // シュラウド内壁
+
 border E1(t=d2,0){x=rpipe;y=t;label=30;}
 border E2(t=rpipe,w){x=t;y=0;label=30;}
 border E3(t=0,H){x=w;y=t;label=30;}
 border E4(t=w,w-d2){x=t;y=H;label=30;}
 border E5(t=H,d2){x=w-d2;y=t;label=30;}
 border E6(t=w-d2,rpipe){x=t;y=d2;label=30;}
+
 border F1(t=rpipe,w){x=t;y=H;label=40;}
 border F2(t=0,d3){x=w;y=H+t;label=40;}
 border F3(t=w,rpipe){x=t;y=H+d3;label=40;}
 border F4(t=d3,0){x=rpipe;y=H+t;label=40;}
 
-mesh Th1 = buildmesh(C1(20) + C2(80) + C3(20) + Cpipe(80) + D1(-10) + D2(-40) + D3(-10) + D4(-40));//+E1(10)+E2(30)+E3(40)+E4(10));
-mesh Th2=buildmesh(D1(10) + D2(40) + D3(10) + D4(40));
-mesh Th3=buildmesh(E1(10)+E2(30)+E3(40)+E4(10)+E5(40)+E6(30));
+mesh Th1 = buildmesh(C1(10) + C2(20) + C3(20) + Cpipe(20) + D1(-4) + D2(-30) + D3(-4) + D4(-30));//+E1(10)+E2(30)+E3(40)+E4(10));
+mesh Th2=buildmesh(D1(4) + D2(20) + D3(4) + D4(20));
+mesh Th3=buildmesh(E1(4)+E2(10)+E3(40)+E4(4)+E5(40)+E6(4));
 mesh Th4=buildmesh(F1(10)+F2(10)+F3(10)+F4(10));
 //mesh Th=Th1+Th2+Th3;
 mesh Th=Th1+Th2+Th3+Th4;
@@ -61,8 +63,6 @@ Vh u=0, v=0, uu, vv, up, vp;
 Qh p=0, pp,ppp;
 //Vh u, v;
 Ph field;
-
-
 
 // --- 2. 有限要素空間の定義 ---
 fespace Xh(Th1, P2);
