@@ -52,8 +52,8 @@ plot(Th3,wait=1);
 plot(Th,wait=1);
 
 // --- 4. 領域(Region)の自動取得 ---
-int regMain   = Th1(-rpipe + w/2., H/2.0).region;       
-int regShroud = Th2(d + w1/2.0, S + H1/2.0).region;   
+int regMain   = Th1((rpipe + w)/2., H/2.0).region;       
+int regShroud = Th2((2*d + w1)/2.0, S + (H1+2*S)/2.0).region;   
 int regEdgeE  = Th3(-rpipe+w + d2/2.0, d2/2.0).region;
 int regTop  = Th4(-rpipe+w/2. ,H+d3).region;
 
@@ -65,31 +65,32 @@ fespace Vh(Th, P2), Qh(Th, P1);
 Vh u=0, v=1., uu, vv, up, vp,V;
 Qh p=0, pp;
 Ph kappa, fQ, field;
-//kappa=10.;
+kappa=90.;
     for (int i = 0; i < Th1.nt; i++) {
     int reg = Th1[i].region;
      if (reg == regMain) {
-        kappa[][i] = 1.0;
+        kappa[][i] = 100;
     } 
    }
     for (int i = 0; i < Th2.nt; i++) {
     int reg = Th2[i].region;
      if (reg == regShroud) {
-        kappa[][i] = 2.0;
+        kappa[][i] = 90;
     } 
    }
     for (int i = 0; i < Th3.nt; i++) {
     int reg = Th3[i].region;
      if (reg == regEdgeE) {
-        kappa[][i] = 3.0;
+        kappa[][i] = 90;
     }
     } 
     for (int i = 0; i < Th4.nt; i++) {
     int reg = Th4[i].region;
      if (reg == regTop) {
-        kappa[][i] = 4.0;
+        kappa[][i] = 90;
     } 
     }
+plot(Th,kappa,fill=1,wait=1);
 
 // --- 5. 物理定数（SI単位系：FLiNaK） ---
 real kelvin = 273.15;
@@ -129,7 +130,6 @@ real hOuter = 33.7e3, TExt = 500.0;
 //      else {
 //        kappa[][i] = kFluid;}
 //    }
-plot(Th,kappa,fill=1,wait=1);
 
 // Set property distributions
 //kappa = (region == regShroud) ? kShroud : kFluid;
