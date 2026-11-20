@@ -39,10 +39,10 @@ border F2(t=0,d3){x=w;y=H+t;label=40;}
 border F3(t=w,rpipe){x=t;y=H+d3;label=40;}
 border F4(t=d3,0){x=rpipe;y=H+t;label=40;}
 
-mesh Th1 = buildmesh(C1(10) + C2(20) + C3(20) + Cpipe(20) + D1(-4) + D2(-30) + D3(-4) + D4(-30));//+E1(10)+E2(30)+E3(40)+E4(10));
+mesh Th1 = buildmesh(C1(10) + C2(20) + C3(10) + Cpipe(20) + D1(-4) + D2(-30) + D3(-4) + D4(-30));//+E1(10)+E2(30)+E3(40)+E4(10));
 mesh Th2=buildmesh(D1(4) + D2(20) + D3(4) + D4(20));
 mesh Th3=buildmesh(E1(4)+E2(10)+E3(40)+E4(4)+E5(40)+E6(4));
-mesh Th4=buildmesh(F1(10)+F2(10)+F3(10)+F4(10));
+mesh Th4=buildmesh(F1(10)+F2(10)+F3(10)+F4(14));
 //mesh Th=Th1+Th2+Th3;
 mesh Th=Th1+Th2+Th3+Th4;
 //savemesh(Th, "yunomi.msh");
@@ -56,6 +56,7 @@ plot(Th,wait=1);
 int regMain   = Th1(rpipe + 0.01, H/2.0).region;       
 int regShroud = Th2(d + w1/2.0, S + H1/2.0).region;   
 int regEdgeE  = Th3(w - d2/2.0, d2/2.0).region;       
+int regTop  = Th4(rpipe + 0.01, H+d3/2.).region;       
 
 fespace Ph(Th1, P0);
 fespace Vh(Th1, P2), Qh(Th1, P1);
